@@ -1,13 +1,15 @@
 
 import './index.css'
+import Navheader from './Components/Navheader.jsx'
 
 function App() {
 
 
   return (
-    <>
-      <h1 className='text-3xl '>Hello World</h1>
-    </>
+
+    <div> 
+     <Navheader />
+    </div>
   )
 }
 
