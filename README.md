@@ -3,3 +3,7 @@
 - Install Tailwind CSS
 - Install Daisy Ul
 - Create a component folder & add the Navbar component
+- Install React router dom 
+- Create BrowserRouter => Routes => Route =/ Body > RouteChildren
+- Create a footer 
+- Create a Login    
