@@ -1,15 +1,38 @@
 
     import { useState } from "react"
-
-
+    import {useRef} from 'react'
+    import { checkValidData } from "../Utils/validata"; 
             const Login = () => {
 
                 const [isLogin, setIsLogin] = useState(false)
 
+                const emailRef = useRef(null); // Create reference for email input
+                const passwordRef = useRef(null); // Create reference for password input
+                const [error, setError] = useState("");
 
                 const handleAuthToggle = () => {
                     setIsLogin(!isLogin);
                 };
+
+                const handleButtonClick = (e) => {   
+                    e.preventDefault();
+
+                    // Validate the Form Data 
+                    // If the form is valid, redirect to the Dashboard
+                    // Else, show an error message  
+                    const email = emailRef.current.value;
+                    const password = passwordRef.current.value;
+
+                     // Check validation
+                    const validationError = checkValidData(email, password);
+                    if (validationError) {
+                    setError(validationError);
+                    return ;
+    }
+                }   
+
+
+
 
             return (
                 <div className="flex justify-center items-center min-h-screen bg-base-200">
@@ -24,6 +47,7 @@
                         <span className="label-text">Email</span>
                         </label>
                         <input 
+                        ref={emailRef} 
                         type="email" 
                         placeholder="email@example.com" 
                         className="input input-bordered" 
@@ -35,6 +59,7 @@
                         <span className="label-text">Password</span>
                         </label>
                         <input 
+                         ref={passwordRef}
                         type="password" 
                         placeholder="Password" 
                         className="input input-bordered" 
@@ -45,7 +70,7 @@
                     </div>
                     
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn btn-primary" onClick={handleButtonClick}>Login</button>
                     </div>
                     
                     <div className="text-center mt-4">
@@ -54,6 +79,7 @@
                             Sign up
                         </a>
                         </p>
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                     </div>
                     </form>)  : 
                     <form>
@@ -75,6 +101,7 @@
                         <span className="label-text">Email</span>
                         </label>
                         <input 
+                        ref={emailRef} 
                         type="email" 
                         placeholder="email@example.com" 
                         className="input input-bordered" 
@@ -86,6 +113,7 @@
                         <span className="label-text">Password</span>
                         </label>
                         <input 
+                         ref={passwordRef}
                         type="password" 
                         placeholder="Password" 
                         className="input input-bordered" 
@@ -97,6 +125,7 @@
                         <span className="label-text">Confirm Password</span>
                         </label>
                         <input 
+                         ref={passwordRef}
                         type="password" 
                         placeholder="Confirm Password" 
                         className="input input-bordered" 
@@ -104,7 +133,7 @@
                     </div>
                     
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Sign Up</button>
+                        <button className="btn btn-primary" onClick={handleButtonClick}>Sign Up</button>
                     </div>
                     
                     <div className="text-center mt-4">
@@ -113,6 +142,7 @@
                             Login
                         </a>
                         </p>
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                     </div>
                     </form>
                     
