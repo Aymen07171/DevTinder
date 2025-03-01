@@ -2,6 +2,10 @@
     import { useState } from "react"
     import {useRef} from 'react'
     import { checkValidData } from "../Utils/validata"; 
+
+    import { createUserWithEmailAndPassword} from "firebase/auth";
+    import { auth } from "../Utils/firebase";
+
             const Login = () => {
 
                 const [isLogin, setIsLogin] = useState(false)
@@ -27,9 +31,40 @@
                     const validationError = checkValidData(email, password);
                     if (validationError) {
                     setError(validationError);
-                    return ;
+                    return ;}
+
+
+                    if(!isLogin){
+                                
+                        // Sign Up  the user
+                        // If the user is successfully signed up, redirect to the Dashboard
+                        // Else, show an error message
+                        createUserWithEmailAndPassword(auth, email, password)
+                          .then((userCredential) => {
+                            // Signed up 
+                            const user = userCredential.user;
+                            console.log(user)
+                            // ...
+                          })
+                          .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            setError(errorCode + " " + errorMessage)
+                          });
+
+
+
+
+
+                    }else{  
+                        // Login the user
+                        // If the user is successfully logged in, redirect to the Dashboard
+                        // Else, show an error message
+
+                    }
+
     }
-                }   
+                
 
 
 
