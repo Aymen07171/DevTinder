@@ -3,7 +3,7 @@
     import {useRef} from 'react'
     import { checkValidData } from "../Utils/validata"; 
 
-    import { createUserWithEmailAndPassword} from "firebase/auth";
+    import { createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
     import { auth } from "../Utils/firebase";
 
             const Login = () => {
@@ -60,6 +60,18 @@
                         // Login the user
                         // If the user is successfully logged in, redirect to the Dashboard
                         // Else, show an error message
+
+                        signInWithEmailAndPassword(auth, email, password)
+                            .then((userCredential) => {
+                                // Signed in 
+                                const user = userCredential.user;
+                                console.log(user)
+                            })
+                            .catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                setError(errorCode + " " + errorMessage)
+                            });
 
                     }
 
