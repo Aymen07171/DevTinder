@@ -10,3 +10,5 @@
 - Form Validation & useRef Hook 
 - Build Authentification 
 - Deploying our App to Production 
+- Implement Sign in user API 
+- Created Redux Store with userSlice 
