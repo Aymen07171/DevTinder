@@ -1,6 +1,5 @@
 
 import { Outlet } from 'react-router-dom'
-import Navheader from './Navheader'
 import Footer from './Footer'
 
 
@@ -8,8 +7,6 @@ import Footer from './Footer'
     return (
         <div>
       
-
-            <Navheader />
             <Outlet  />
             <Footer />
 

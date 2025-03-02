@@ -4,6 +4,8 @@ import Body from './Components/Body.jsx';
 import Profile from './Components/Profile.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import Login from './Components/Login.jsx';
+// import Navheader from './Components/Navheader.jsx';
+
 import { useEffect } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './Utils/firebase.js'; // Removed redundant "../src"
@@ -30,12 +32,9 @@ const App = () => {
   }, [dispatch]); // Dependency array includes `dispatch`
 
   return (
- 
     <BrowserRouter>
     <Routes>
-      {/* Parent Route (Body) */}
       <Route path="/" element={<Body />}>
-        {/* Child Routes (Rendered inside <Outlet /> in Body.jsx) */}
         <Route path="login" element={<Login />} />
         <Route path="profile" element={<Profile />} />
         <Route path="dashboard" element={<Dashboard />} />

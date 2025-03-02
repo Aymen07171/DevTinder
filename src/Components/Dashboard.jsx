@@ -1,8 +1,9 @@
+// import Header from '../Components/Header'
 
 const Dashboard = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      {/* <Header /> */}
     </div>
   )
 }
